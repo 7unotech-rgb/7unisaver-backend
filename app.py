@@ -31,6 +31,8 @@ def analyze_video():
         'quiet': True,
         'no_warnings': True,
         'nocheckcertificate': True,
+        # Menggunakan cookies jika ada
+        'cookiefile': 'cookies.txt' if os.path.exists('cookies.txt') else None,
         'http_headers': {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
         }
@@ -71,6 +73,8 @@ def download_video():
             'outtmpl': f'{DOWNLOAD_FOLDER}/%(id)s.%(ext)s',
             'quiet': True,
             'nocheckcertificate': True,
+            # Menggunakan cookies jika ada
+            'cookiefile': 'cookies.txt' if os.path.exists('cookies.txt') else None,
             'http_headers': {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
             }
