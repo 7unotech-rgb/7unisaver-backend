@@ -26,10 +26,14 @@ def analyze_video():
     if not url:
         return jsonify({'error': 'URL is required'}), 400
 
+    # UPDATE: Menambahkan headers agar terlihat seperti browser asli
     ydl_opts = {
         'quiet': True,
         'no_warnings': True,
-        # Mengambil info tanpa download
+        'nocheckcertificate': True,
+        'http_headers': {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
+        }
     }
 
     try:
@@ -62,10 +66,14 @@ def download_video():
         return jsonify({'error': 'URL missing'}), 400
 
     try:
-        # Konfigurasi yt-dlp
+        # UPDATE: Menambahkan headers di sini juga
         ydl_opts = {
             'outtmpl': f'{DOWNLOAD_FOLDER}/%(id)s.%(ext)s',
             'quiet': True,
+            'nocheckcertificate': True,
+            'http_headers': {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36',
+            }
         }
 
         if fmt == 'audio':
